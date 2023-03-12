@@ -1,4 +1,4 @@
-# csnetwk-mp
+# Message Board System
 
 ## Collaborators:
 - Komhoko, Jamuel
