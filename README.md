@@ -1,6 +1,6 @@
 # csnetwk-mp
 
-##Collaborators:
+## Collaborators:
 - Komhoko, Jamuel
 - Lim, Aurelius
 - Mapua, Monty
