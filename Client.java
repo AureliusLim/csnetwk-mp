@@ -29,28 +29,38 @@ public class Client {
 				String[] command;;
              
                 command = messageToSend.split(" ", 2);
-				
-					bufferedWriter.write(messageToSend);
-					bufferedWriter.newLine();
-					bufferedWriter.flush();
+				bufferedWriter.write(messageToSend);
+				bufferedWriter.newLine();
+				bufferedWriter.flush();
+					
                 if(command[0].equals("/leave")){ // leave
 					disconnectClient();
                 }
                 else if(command[0].equals("/register")){ //set alias
                     this.username = command[1];
                 }
+			  
 				
 
 			}
 		}
 		catch(IOException e){
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	public void listenForMessage(){
 		new Thread (new Runnable(){
 			@Override public void run(){
-				
+				String message;
+				while(socket.isConnected()){
+					try{
+						message = bufferedReader.readLine();
+						System.out.println(message);
+					}
+					catch(Exception e){
+						e.printStackTrace();
+					}
+				}
 			}
 		}).start();
 	}

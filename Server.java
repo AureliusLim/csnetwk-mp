@@ -64,7 +64,7 @@ class ClientHandler implements Runnable{
             this.socket = socket;
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            this.clientname = "Client";
+            this.clientname = "Client" + (clientHandlers.size() + 1);
             clientHandlers.add(this);
            
         }
@@ -88,7 +88,9 @@ class ClientHandler implements Runnable{
                 else if(command[0].equals("/register")){
                     this.clientname = command[1];
                 }
-                
+                else if (command[0].equals("/all")){
+                    sendAll(command[1]);
+                }
             }
             catch(IOException e){
                //System.out.print(e);
@@ -96,7 +98,20 @@ class ClientHandler implements Runnable{
             }
         }
     }
-
+    public void sendAll(String message){
+        for(ClientHandler x : clientHandlers){
+            try{
+                if(!x.clientname.equals(clientname)){
+                    x.bufferedWriter.write(clientname + ": " + message);
+                    x.bufferedWriter.newLine();
+                    x.bufferedWriter.flush();
+                }
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
     public void disconnectClient(){
         System.out.println(this.clientname + " has disconnected");
         clientHandlers.remove(this);
