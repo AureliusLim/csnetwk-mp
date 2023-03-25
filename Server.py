@@ -60,3 +60,14 @@ while(True):
             #print(client_conns) #testing
             command = bytes(json.dumps({"command": "register", "handle": client_conns[received_client]}), "utf-8")
             server_socket.sendto(command, received_client)
+    elif received_json["command"] == "all":
+        #find the sender's name by searching the dictionary
+        sender = client_conns[received_client]
+        fullline = sender + ": " + received_json["message"]
+        
+        #send to all clients in dictionary
+        all_client_address = client_conns.keys()
+        for x in all_client_address:
+            #make sure that message is not sent to the sender
+            if received_client != x:
+                server_socket.sendto(bytes(json.dumps({"command": "all", "message": fullline}), "utf-8"), (x))
