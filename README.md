@@ -1,6 +1,6 @@
 # Message Board System
 
 ## Collaborators:
-- Komhoko, Jamuel
+- Kimhoko, Jamuel
 - Lim, Aurelius
-- Mapua, Monty
+- Mapua, Ramon
