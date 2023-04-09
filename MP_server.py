@@ -105,4 +105,4 @@ while True:
         print("Command not found")
         serverSock.sendto(command, address)
         
-    serverSock.close()
+    serverSock.close

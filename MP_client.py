@@ -208,7 +208,7 @@ def main():
             else:
                 clientSock.sendto(bytes(json.dumps({"command":command}), "utf-8"), (SERVER_HOST, DESTINATION_PORT))
                 time.sleep(0.2)
-    clientSock.close()
+        clientSock.close
     
 if __name__ == '__main__':
     main()
